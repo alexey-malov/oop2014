@@ -12,13 +12,22 @@ public:
 	{
 	}
 
+	CMyArray(CMyArray const& arr)
+		:m_items(std::make_unique<T[]>(arr.m_size)), m_size(arr.m_size)
+	{
+		for (size_t i = 0; i < arr.m_size; ++i)
+		{
+			m_items[i] = arr.m_items[i];
+		}
+	}
+
 	~CMyArray()
 	{
 	}
 
 	bool IsEmpty()const
 	{
-		return true;
+		return m_size == 0;
 	}
 
 	size_t GetSize()const
